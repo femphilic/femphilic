@@ -1,0 +1,105 @@
+---
+import type { ClassValue } from "clsx";
+import rtl from "rtl-detect";
+import {
+  type Props as BaseHeadProps,
+  default as BaseHead,
+} from "~/components/BaseHead.astro";
+import DropdownMenu from "~/components/DropdownMenu.astro";
+import DropdownMenuButton from "~/components/DropdownMenuButton.astro";
+import { DEFAULT_LOCALE } from "~/constants";
+import { cn } from "~/lib/utils";
+import { Languages } from "@lucide/astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+interface Props extends Partial<BaseHeadProps> {
+  htmlClass?: ClassValue;
+  bodyClass?: ClassValue;
+}
+
+const {
+  title = "femphilic",
+  description = "a home to my projects, portfolio, and more :3",
+  index = true,
+  image,
+  htmlClass,
+  bodyClass,
+} = Astro.props;
+
+const locale = Astro.currentLocale ?? DEFAULT_LOCALE;
+
+const { getLangDir } = rtl;
+---
+
+<!doctype html>
+<html
+  class={cn("bg-zinc-950 scroll-smooth", htmlClass)}
+  lang={locale}
+  dir={getLangDir(locale)}
+>
+  <head>
+    <BaseHead {title} {description} {image} {index} />
+  </head>
+  <body
+    class={cn(
+      "min-h-screen antialiased text-lg flex flex-col pt-16 text-zinc-50",
+      bodyClass,
+    )}
+  >
+    <header
+      class="items-center justify-between bg-zinc-950/50 backdrop-blur-md fixed top-0 left-1/2 -translate-x-1/2 max-w-prose w-full flex gap-2 p-4"
+    >
+      <a
+        href="/"
+        class="text-2xl font-bold transition-colors hover:text-zinc-100"
+        >femphilic</a
+      >
+      <nav class="flex gap-2">
+        <a
+          href="/"
+          class="text-base text-zinc-300 transition-colors hover:text-zinc-200"
+          >home</a
+        >
+        <a
+          href="/blog"
+          class="text-base text-zinc-300 transition-colors hover:text-zinc-200"
+          >blog</a
+        >
+        <a
+          href="/portfolio"
+          class="text-base text-zinc-300 transition-colors hover:text-zinc-200"
+          >portfolio</a
+        >
+        <a
+          href="/about"
+          class="text-base text-zinc-300 transition-colors hover:text-zinc-200"
+          >about</a
+        >
+        {
+          /* <DropdownMenuButton>
+          <DropdownMenu
+            class="min-w-40 bg-zinc-800 p-1 flex flex-col gap-2 rounded-xl"
+          >
+            <h2 class="text-lg font-bold px-1 text-zinc-300">language</h2>
+            <a
+              href="/"
+              class="w-full bg-transparent p-1 text-base hover:bg-zinc-700/50 transition-colors rounded-lg"
+              >english</a
+            >
+            <a
+              href="/ja"
+              class="w-full bg-transparent p-1 text-base hover:bg-zinc-700/50 transition-colors rounded-lg"
+              >日本語</a
+            >
+          </DropdownMenu>
+          <Languages
+            class="size-4 stroke-zinc-300 transition-colors hover:stroke-zinc-200"
+          />
+          <span class="sr-only">language</span>
+        </DropdownMenuButton> */
+        }
+      </nav>
+    </header>
+    <slot />
+  </body>
+</html>

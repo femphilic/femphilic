@@ -1,0 +1,34 @@
+{
+  "name": "femphilic",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.1.8",
+    "@astrojs/markdoc": "^1.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "@floating-ui/dom": "^1.7.6",
+    "@lucide/astro": "^1.8.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.5",
+    "clsx": "^2.1.1",
+    "rtl-detect": "^1.1.2",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/rtl-detect": "^1.0.3",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.81.1"
+  }
+}

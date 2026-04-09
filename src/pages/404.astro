@@ -1,0 +1,21 @@
+---
+import Layout from "~/layouts/Layout.astro";
+---
+
+<Layout
+  title="404 | femphilic"
+  description="i couldn't find that page :<"
+  index={false}
+  bodyClass="items-center"
+>
+  <main class="max-w-prose flex w-full flex-col gap-4 p-4">
+    <h1 class="text-4xl font-bold">404</h1>
+    <p class="text-base text-zinc-300">i couldn't find that page :&lt;</p>
+    <a
+      href="/"
+      class="px-3 py-2 w-max hover:bg-zinc-800/90 transition-colors rounded-lg bg-zinc-800"
+    >
+      home
+    </a>
+  </main>
+</Layout>

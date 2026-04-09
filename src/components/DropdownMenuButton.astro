@@ -1,0 +1,71 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"button">;
+
+const props = Astro.props;
+---
+
+<button {...props}>
+  <slot />
+</button>
+
+<script>
+  import { autoUpdate, computePosition } from "@floating-ui/dom";
+
+  const buttons = document.querySelectorAll(
+    "button:has(>[data-menu])",
+  )! as unknown as HTMLButtonElement[];
+  console.assert(buttons.length > 0, "buttons must have a menu slot");
+
+  for (const button of buttons) {
+    const menu = button.querySelector("[data-menu]")! as HTMLElement;
+    console.assert(menu instanceof HTMLElement, "menu must be a element");
+
+    menu.removeAttribute("data-open");
+
+    menu.remove();
+
+    menu.classList.remove("hidden");
+
+    function removeMenu(event: MouseEvent, cleanup: () => void) {
+      if (event.target === menu) {
+        return;
+      }
+      cleanup();
+      menu.remove();
+      document.body.classList.remove(
+        "overflow-hidden",
+        "overscroll-contain",
+        "relative",
+      );
+      document.body.removeEventListener("click", (event) =>
+        removeMenu(event, cleanup),
+      );
+    }
+
+    async function updatePosition() {
+      const { x, y } = await computePosition(button, menu, {
+        placement: "bottom-start",
+      });
+      menu.style.left = `${x}px`;
+      menu.style.top = `${y}px`;
+    }
+
+    button.addEventListener("click", () => {
+      updatePosition();
+      const cleanup = autoUpdate(button, menu, updatePosition);
+      setTimeout(() =>
+        document.body.addEventListener("click", (event) =>
+          removeMenu(event, cleanup),
+        ),
+      );
+      document.body.classList.add(
+        "overflow-hidden",
+        "overscroll-contain",
+        "relative",
+      );
+      document.body.appendChild(menu);
+    });
+  }
+</script>

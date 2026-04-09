@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "~/layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout
+  bodyClass="items-center"
+  title={`${post.data.title} | femphilic's blog`}
+  description={post.data.description}
+>
+  <main class="p-4 max-w-prose w-full">
+    <header class="flex flex-col gap-4">
+      <header
+        class="flex items-center divide-zinc-400 divide-x *:first:pr-2 *:not-first:px-2"
+      >
+        <a
+          class="text-sm text-zinc-400 italic transition-colors hover:text-zinc-400/90"
+          href="/">&lt;&lt; home</a
+        >
+        <a
+          class="text-sm text-zinc-400 italic transition-colors hover:text-zinc-400/90"
+          href="/blog">&lt;&lt; blog</a
+        >
+      </header>
+      <main class="px-5 py-6 bg-zinc-800 rounded-2xl">
+        <time class="text-sm italic text-zinc-400 pb-2">
+          {post.data.pubDate.toLocaleDateString("en")}
+        </time>
+        <h1 class="text-4xl font-bold">{post.data.title}</h1>
+        <p class="text-base text-zinc-300">{post.data.description}</p>
+      </main>
+    </header>
+    <main class="prose-zinc prose prose-invert">
+      <Content />
+    </main>
+  </main>
+</Layout>

@@ -1,0 +1,102 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import GithubIcon from "~/components/GithubIcon.astro";
+import TwitterIcon from "~/components/TwitterIcon.astro";
+import DiscordIcon from "~/components/DiscordIcon.astro";
+---
+
+<Layout
+  bodyClass="items-center"
+  title="about | femphilic"
+  description="about me :>"
+>
+  <main class="max-w-prose flex w-full flex-col gap-4 p-4">
+    <header class="flex flex-col gap-4">
+      <header
+        class="flex items-center divide-zinc-400 divide-x *:first:pr-2 *:not-first:px-2"
+      >
+        <a
+          class="text-sm text-zinc-400 italic transition-colors hover:text-zinc-400/90"
+          href="/">&lt;&lt; home</a
+        >
+      </header>
+      <main class="flex flex-col">
+        <h1 class="text-4xl font-bold">about</h1>
+        <p class="text-base text-zinc-300">about me :&gt;</p>
+      </main>
+    </header>
+    <main class="flex flex-col gap-2">
+      <section class="flex flex-col gap-1">
+        <h2 class="text-2xl font-bold">who am i?</h2>
+        <p class="text-base text-zinc-300">
+          i am femphilic, a software engineer w interests in game development
+          (both inside and outside of roblox), web development, and more! i am
+          open to lots of projects, so feel free to <a
+            href="https://discord.com/users/1223461630608674917"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-400 hover:text-blue-400/90 transition-colors underline"
+            >hmu on discord</a
+          > :&gt;
+        </p>
+      </section>
+      <section class="flex flex-col gap-1">
+        <h2 class="text-2xl font-bold">what are my skills?</h2>
+        <p class="text-base text-zinc-300">
+          most of my programming experience has been in luau (roblox's scripting
+          language), but i have also worked with other languages such as
+          typescript, c, c++, and more... i always like learning new things, so
+          i often try to learn new concepts thru the languages i like to use
+          (e.g. c++ and luau)!
+        </p>
+      </section>
+      <section class="flex flex-col gap-1">
+        <h2 class="text-2xl font-bold">what are my hobbies?</h2>
+        <p class="text-base text-zinc-300">
+          outside of programming, i like to play games (often on roblox), watch
+          yt videos, and learn languages. i will often also <a
+            href="/blog"
+            class="text-blue-400 hover:text-blue-400/90 transition-colors underline"
+            >write on my blog</a
+          > in my free time, sometimes in a language i am learning. i'll write about
+          anything from a simple "journal entry" about my feelings to poetry to technical
+          blog posts. imo, this blog is the best way to learn about how i truly am.
+          :3
+        </p>
+      </section>
+      <section class="flex flex-col gap-1">
+        <h2 class="text-2xl font-bold">socials!! :D</h2>
+        <main class="flex gap-2">
+          <a
+            href="https://github.com/femphilic"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><GithubIcon
+              class="size-5 fill-zinc-50 hover:fill-zinc-50/90 transition-colors"
+              aria-label="github"
+            /></a
+          >
+          <a
+            href="https://twitter.com/femphilic"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><TwitterIcon
+              class="size-5 fill-zinc-50 hover:fill-zinc-50/90 transition-colors"
+              aria-label="twitter"
+            /></a
+          >
+          <a
+            href="https://discord.com/users/1223461630608674917"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <DiscordIcon
+              class="size-5 fill-zinc-50 hover:fill-zinc-50/90 transition-colors"
+              aria-label="discord"
+            /></a
+          >
+        </main>
+      </section>
+    </main>
+  </main>
+</Layout>

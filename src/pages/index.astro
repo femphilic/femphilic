@@ -1,0 +1,45 @@
+---
+import Layout from "~/layouts/Layout.astro";
+
+const LINKS = [
+  {
+    label: "blog",
+    description: "an index to all of my blog posts :>",
+    href: "/blog",
+  },
+  {
+    label: "portfolio",
+    description: "my portfolio :D",
+    href: "/portfolio",
+  },
+  {
+    label: "about",
+    description: "about me :>",
+    href: "/about",
+  },
+];
+---
+
+<Layout bodyClass="items-center">
+  <main class="max-w-prose flex w-full flex-col gap-4 p-4">
+    <header class="flex flex-col">
+      <h1 class="text-4xl font-bold">femphilic</h1>
+      <p class="text-base text-zinc-300">
+        a home to my projects, portfolio, and more :3
+      </p>
+    </header>
+    <main class="flex flex-col gap-2">
+      {
+        LINKS.map((link) => (
+          <a
+            href={link.href}
+            class="px-5 py-6 hover:bg-zinc-800/90 transition-colors rounded-2xl bg-zinc-800"
+          >
+            <h2 class="text-2xl font-bold">{link.label}</h2>
+            <p class="text-base text-zinc-300">{link.description}</p>
+          </a>
+        ))
+      }
+    </main>
+  </main>
+</Layout>
