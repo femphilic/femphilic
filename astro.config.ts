@@ -1,9 +1,9 @@
 import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import cloudflare from "@astrojs/cloudflare";
 import markdoc from "@astrojs/markdoc";
 import { DEFAULT_LOCALE, LOCALES } from "./src/constants";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -52,7 +52,5 @@ export default defineConfig({
     plugins: [tailwindcss() as any],
   },
   trailingSlash: "never",
-  adapter: cloudflare({
-    imageService: "compile",
-  }),
+  adapter: vercel(),
 });
